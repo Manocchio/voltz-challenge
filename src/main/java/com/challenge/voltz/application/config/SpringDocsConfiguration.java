@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringDocsConfiguration {
     @Bean
-    public OpenAPI springShopOpenAPI() {
+    public OpenAPI springOpenAPI() {
         return new OpenAPI()
                 .info(new Info().title("Tools Management API")
                         .description("Sprigboot based service to manage tools, created for the Volt'z challenge")
