@@ -64,22 +64,17 @@ public class ToolsService implements ToolsServiceOperations {
 
     private void validateTool(Tool tool) throws InvalidToolException {
 
-        tool.getTags().forEach(tag -> {
-                long duplicatedCounter = tool.getTags().stream().filter(t -> t.getDescription().equals(tag.getDescription())).count();
-                 if(duplicatedCounter > 1){
-                     try {
-                         throw new InvalidToolException("Duplicated tags");
-                     } catch (InvalidToolException e) {
-                         throw new RuntimeException(e);
-                     }
-                 }
+        for (Tag tag : tool.getTags()) {
+            long duplicatedCounter = tool.getTags().stream().filter(t -> t.getDescription().equals(tag.getDescription())).count();
+            if (duplicatedCounter > 1) {
+                throw new InvalidToolException("Duplicated tags");
             }
-        );
+        }
 
         if (tool.getTags().size() > 8) {
             throw new InvalidToolException("Tags limit exceeded, must be between 0 and 8");
         }
-        if (tool.getDescription().toCharArray().length > MAX_CHARACTERS) {
+        if (tool.getDescription().length() > MAX_CHARACTERS) {
             throw new InvalidToolException("Tool description is too long, must be between 0 and 256 characters");
         }
         if (toolRepository.findFirstByTitleIgnoreCase(tool.getTitle()).isPresent()) {

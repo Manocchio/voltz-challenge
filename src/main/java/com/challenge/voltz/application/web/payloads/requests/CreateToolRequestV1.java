@@ -23,9 +23,9 @@ public class CreateToolRequestV1 {
 
     public Tool toDomain() {
         return new Tool(
-                title = getTitle(),
-                description = getDescription(),
-                link = getLink(),
+                title,
+                link,
+                description,
                 ResourceMapper.toDomain(getTags())
         );
     }
