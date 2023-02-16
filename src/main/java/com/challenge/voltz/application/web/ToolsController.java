@@ -4,6 +4,7 @@ import com.challenge.voltz.application.web.operations.ToolOperations;
 import com.challenge.voltz.application.web.payloads.requests.CreateToolRequestV1;
 import com.challenge.voltz.application.web.payloads.responses.ToolResponseV1;
 
+import com.challenge.voltz.domain.exceptions.InvalidToolException;
 import com.challenge.voltz.domain.exceptions.ToolNotFoundException;
 import com.challenge.voltz.domain.services.ToolsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class ToolsController implements ToolOperations {
     }
 
     @Override
-    public ResponseEntity<ToolResponseV1> createTool(CreateToolRequestV1 toolRequest) {
+    public ResponseEntity<ToolResponseV1> createTool(CreateToolRequestV1 toolRequest) throws InvalidToolException {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new ToolResponseV1(
                         toolsService.createTool(toolRequest.toDomain())
