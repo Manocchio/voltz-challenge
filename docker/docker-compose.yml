@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  voltzdb:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=voltzdb
+    ports:
+      - '5432:5432'
+    volumes:
+      - '../src/main/resources/sql/migration.sql:/docker-entrypoint-initdb.d/migration.sql'
