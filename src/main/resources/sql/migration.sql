@@ -24,3 +24,14 @@ CREATE TABLE IF NOT EXISTS ToolTags(
    CONSTRAINT tool_tags_id PRIMARY KEY(tool_id, tag_id)
 );
 
+
+CREATE TABLE IF NOT EXISTS AuthorizedUser(
+    id serial NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    CONSTRAINT user_pk PRIMARY KEY(id)
+);
+
+INSERT INTO AuthorizedUser(name, password)
+    VAlUES('admin', '$2a$12$P622zGgB3IWjqwNGldLpB.nHk3Suabe7XzWS57li1ImNYYV7GBwVy');
+

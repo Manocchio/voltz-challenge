@@ -1,10 +1,10 @@
-package com.challenge.voltz.application.web.payloads;
+package com.challenge.voltz.application.web.payloads.requests;
 
-public class UserDTO {
+public class UserLoginV1 {
     private String name;
     private String password;
 
-    public UserDTO(String name, String password) {
+    public UserLoginV1(String name, String password) {
         this.name = name;
         this.password = password;
     }
